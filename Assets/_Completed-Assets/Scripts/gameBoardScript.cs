@@ -303,7 +303,7 @@ public class gameBoardScript : MonoBehaviour {
 		arrows.Add("*", star_transition);
 		q4 = new State("q4", false, arrows);
 		states = new Dictionary<string, State>() {{"q0", q0}, {"q1", q1}, {"q2", q2}, {"q3", q3}, {"q4", q4}};
-		Machine m8 = new Machine(q0, alphabet, states, "- you cannot step on a # tile after a * tile");
+		Machine m8 = new Machine(q0, alphabet, states, "- your third step must be on a * tile");
 		machines_2.Add(m8);
 
 		//every odd numbered step should be on a # tile
@@ -471,7 +471,7 @@ public class gameBoardScript : MonoBehaviour {
 		states = new Dictionary<string, State>() {{"q0", q0}, {"q1", q1}, {"q2", q2},
 			{"q3", q3}, {"q4", q4}, {"q5", q5}, {"q6", q6}, {"q7", q7}, {"q8", q8},
 			{"q9", q9}, {"q10", q10}, {"q11", q11}, {"q12", q12}, {"q13", q13}};
-		Machine m11 = new Machine(q0, alphabet, states, "- you must make atleast 8 steps");
+		Machine m11 = new Machine(q0, alphabet, states, "- you can only make a total of 12 steps");
 		machines_1.Add(m11);
 
 		//does not contain the substring ##
@@ -494,7 +494,7 @@ public class gameBoardScript : MonoBehaviour {
 		star_transition = new List<string>() {"q2"};
 		arrows.Add("#", pound_transition);
 		arrows.Add("*", star_transition);
-		q2 = new State("q3", false, arrows);
+		q2 = new State("q2", false, arrows);
 		states = new Dictionary<string, State>() {{"q0", q0}, {"q1", q1}, {"q2", q2}};
 		Machine m12 = new Machine(q0, alphabet, states, "- you cannot step on two # tiles consecutively");
 		machines_1.Add (m12);
