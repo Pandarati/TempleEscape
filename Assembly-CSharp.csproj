@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4D8E1E2B-8FC0-B7DA-A347-A8A1F5D91F56}</ProjectGuid>
+    <ProjectGuid>{AC46930D-0538-52AC-BE45-694EBF927B0B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,28 +53,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\_Completed-Assets\Scripts\BoardManager.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\CompleteCameraController.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\CompletePlayerController.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\CompleteRotator.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\DFA.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\gameBoardScript.cs" />
+     <Compile Include="Assets\_Completed-Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\_Completed-Assets\Scripts\LineSystem.cs" />
+     <Compile Include="Assets\_Completed-Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\_Completed-Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\_Completed-Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\BoardManager.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\Enemy.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\GameManager.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\Loader.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\MovingObject.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\Player.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\SoundManager.cs" />
+     <Compile Include="Assets\_Complete-Game\Scripts\Wall.cs" />
      <Compile Include="Assets\ColliderScript.cs" />
      <Compile Include="Assets\collisionScript.cs" />
+     <Compile Include="Assets\Grid.cs" />
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\playerMovement.cs" />
-     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
-     <None Include="Assets\TutorialInfo\Fonts\LICENSE.txt" />
+     <Compile Include="Assets\SpriteGlow\SpriteGlowEffect.cs" />
+     <Compile Include="Assets\SpriteGlow\SpriteGlowMaterial.cs" />
+     <None Include="Assets\SpriteGlow\SpriteOutline.shader" />
+     <None Include="Assets\SpriteGlow\LICENSE.txt" />
+     <None Include="Assets\Fonts\OFL.txt" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>/Users/cicelyb/Desktop/TempleEscape-master 3/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>/Users/cicelyb/Desktop/TempleEscape-master/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/cicelyb/Desktop/TempleEscape-master 3/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/cicelyb/Desktop/TempleEscape-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/cicelyb/Desktop/TempleEscape-master 3/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/cicelyb/Desktop/TempleEscape-master/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/cicelyb/Desktop/TempleEscape-master 3/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/cicelyb/Desktop/TempleEscape-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
