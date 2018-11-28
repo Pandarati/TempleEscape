@@ -12,7 +12,7 @@ public class gameBoardScript : MonoBehaviour {
 
 			protected static List<Machine> machines_1 = new List<Machine>();
 			protected static List<Machine> machines_2 = new List<Machine>();
-			protected static Machine mainDFA = new Machine();
+			public static Machine mainDFA = new Machine();
 
 // 	public static void Main (string[] args) {
 // 		mainDFA = buildLevelDFA();

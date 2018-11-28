@@ -21,32 +21,40 @@ public class ColliderScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collision){
-				if (gameObject.tag == "xtile"){
-					Debug.Log("Stepped on *");
-        }
+				if(collision.gameObject.tag =="PickUp" && Movement.inputEnabled == true) {
+					char symbol = 'j';
+					if (gameObject.tag == "xtile"){
+						Debug.Log("Stepped on *");
+						Movement.characters.Add('*');
+	        }
 
-        if (gameObject.tag == "htile"){
-					Debug.Log("Stepped on #");
-        }
-				Debug.Log(Movement.prev_move);
-				Debug.Log(Movement.move);
-				Debug.Log(Movement.steps.Count);
-				if (GetComponent<Renderer>().material.color == Color.cyan){
-					if (Movement.move == Movement.prev_move){
-						// mngr = GetComponent<BoardManager>();
-						// mngr.ResetBoard();
-						SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-						// restart = true;
+	        if (gameObject.tag == "htile"){
+						Debug.Log("Stepped on #");
+						Movement.characters.Add('#');
+	        }
+					Debug.Log(Movement.prev_move);
+					Debug.Log(Movement.move);
+					Debug.Log(Movement.steps.Count);
+					if (GetComponent<Renderer>().material.color == Color.cyan){
+						if (Movement.move == Movement.prev_move){
+							// mngr = GetComponent<BoardManager>();
+							// mngr.ResetBoard();
+							SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+							// restart = true;
+						}
+					} else {
+						GetComponent<Renderer>().material.color = Color.cyan;
+						//Movement.characters.Add(symbol);
 					}
-				} else {
-					GetComponent<Renderer>().material.color = Color.cyan;
 				}
     }
 
 		void OnTriggerExit2D(Collider2D collision){
-					if (GetComponent<Renderer>().material.color == Color.cyan){
-						if (Movement.move == KeyCode.None) {
-							GetComponent<Renderer>().material.color = original;
+					if(collision.gameObject.tag == "PickUp") {
+						if (GetComponent<Renderer>().material.color == Color.cyan){
+							if (Movement.move == KeyCode.None) {
+								GetComponent<Renderer>().material.color = original;
+							}
 						}
 					}
 	  }

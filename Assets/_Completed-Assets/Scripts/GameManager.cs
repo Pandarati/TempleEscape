@@ -13,7 +13,10 @@ public class GameManager : MonoBehaviour {
 	private int level = 1;
 	public static int public_level;
 	private Text levelText;
+	private Canvas canvas;
 	public static List<GameObject> activeTiles;
+	public static GameObject panel;
+	public bool replay;
 
 	void Awake() {
 		if (instance == null) {
@@ -21,6 +24,8 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy(gameObject);
 		}
+
+		replay = false;
 
 		DontDestroyOnLoad(gameObject);
 		activeTiles = new List<GameObject>();
@@ -39,8 +44,15 @@ public class GameManager : MonoBehaviour {
 	//This is called each time a scene is loaded.
 	static private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
 	{
-			//instance.level++;
-			instance.InitGame();
+			if (instance.replay) {
+				instance.InitGame();
+			}else {
+				instance.level++;
+				if (instance.level > 5) {
+					instance.level = 1;
+				}
+				instance.InitGame();
+			}
 	}
 
 	void InitGame() {
@@ -48,7 +60,6 @@ public class GameManager : MonoBehaviour {
 
 		//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
 		levelText = GameObject.Find("LevelText").GetComponent<Text>();
-
 		//Set the text of levelText to the string "Day" and append the current level number.
 		levelText.text = "Level " + level;
 
@@ -59,8 +70,16 @@ public class GameManager : MonoBehaviour {
 		bMngr.SetupScene(level);
 	}
 
+	void levelFailed() {
+		replay = true;
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		restart.restarting = false;
+	}
+
 	// Update is called once per frame
 	void Update () {
-
+		if (restart.restarting == true){
+			levelFailed();
+		}
 	}
 }
