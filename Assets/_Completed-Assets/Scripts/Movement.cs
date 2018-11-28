@@ -9,12 +9,14 @@ public class Movement : MonoBehaviour {
 	public static KeyCode move;
 	public static KeyCode prev_move;
 	public static List<KeyCode> steps;
+	private bool badmove;
 
 	 void Start ()
 	 {
 			 transform.position = player.transform.position;
 
 			 steps = new List<KeyCode>();
+			 badmove = false;
 	 }
 
 	 void Update()
@@ -41,23 +43,26 @@ public class Movement : MonoBehaviour {
 				 (prev_move == KeyCode.UpArrow &&  move == KeyCode.DownArrow) ||
 				 (move == KeyCode.UpArrow &&  prev_move == KeyCode.DownArrow)) {
 					 steps.RemoveAt(steps.Count - 1);
-					 prev_move = steps[steps.Count - 1];
+					 if (steps.Count > 0){
+						 prev_move = steps[steps.Count - 1];
+					 }
 					 move = KeyCode.None;
-					 if (steps.Count == 1){
-						 steps.Clear();
-					 }
-					 Debug.Log(prev_move);
-					 Debug.Log(move);
+					 // if (steps.Count == 1){
+						//  steps.Clear();
+					 // }
+					 // Debug.Log(prev_move);
+					 // Debug.Log(steps.Count);
 				 } else {
-					 if (steps.Count == 0) {
-						 steps.Add(move);
-						 steps.Add(move);
-					 } else {
-						 steps.Add(move);
-					 }
+					 // if (steps.Count == 0) {
+						//  steps.Add(move);
+						//  steps.Add(move);
+					 // } else {
+						//  steps.Add(move);
+					 // }
+					 steps.Add(move);
 					 prev_move = move;
-					 Debug.Log(prev_move);
-					 Debug.Log(move);
+					 // Debug.Log(prev_move);
+					 // Debug.Log(move);
 				 }
 
         }

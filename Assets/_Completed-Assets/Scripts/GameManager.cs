@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 
 	public BoardManager bMngr;
+	public gameBoardScript dfaMngr;
 	private int level = 1;
 	public static int public_level;
 	private Text levelText;
@@ -24,20 +25,21 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		activeTiles = new List<GameObject>();
 		bMngr = GetComponent<BoardManager>();
+		dfaMngr = GetComponent<gameBoardScript>();
 		InitGame();
 	}
 
-	// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-	// static public void CallbackInitialization()
-	// {
-	// 		//register the callback to be called everytime the scene is loaded
-	// 		SceneManager.sceneLoaded += OnSceneLoaded;
-	// }
+	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+	static public void CallbackInitialization()
+	{
+			//register the callback to be called everytime the scene is loaded
+			SceneManager.sceneLoaded += OnSceneLoaded;
+	}
 
 	//This is called each time a scene is loaded.
 	static private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
 	{
-			instance.level++;
+			//instance.level++;
 			instance.InitGame();
 	}
 
@@ -52,16 +54,13 @@ public class GameManager : MonoBehaviour {
 
 		activeTiles.Clear();
 
+		dfaMngr.initialize();
+
 		bMngr.SetupScene(level);
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-	}
-
-	private void restartLevel() {
-		 SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-		 ColliderScript.restart = false;
 	}
 }

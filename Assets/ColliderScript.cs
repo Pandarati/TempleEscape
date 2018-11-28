@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ColliderScript : MonoBehaviour {
 
@@ -27,15 +28,15 @@ public class ColliderScript : MonoBehaviour {
         if (gameObject.tag == "htile"){
 					Debug.Log("Stepped on #");
         }
-				// Debug.Log(Movement.prev_move);
-				// Debug.Log(Movement.move == KeyCode.UpArrow);
+				Debug.Log(Movement.prev_move);
+				Debug.Log(Movement.move);
+				Debug.Log(Movement.steps.Count);
 				if (GetComponent<Renderer>().material.color == Color.cyan){
-					if (Movement.move == KeyCode.None && Movement.steps.Count > 0) {
-						GetComponent<Renderer>().material.color = original;
-					} else if (Movement.move == Movement.prev_move){
+					if (Movement.move == Movement.prev_move){
 						// mngr = GetComponent<BoardManager>();
 						// mngr.ResetBoard();
-						restart = true;
+						SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+						// restart = true;
 					}
 				} else {
 					GetComponent<Renderer>().material.color = Color.cyan;
@@ -44,7 +45,7 @@ public class ColliderScript : MonoBehaviour {
 
 		void OnTriggerExit2D(Collider2D collision){
 					if (GetComponent<Renderer>().material.color == Color.cyan){
-						if (Movement.move == KeyCode.None && Movement.steps.Count != 2) {
+						if (Movement.move == KeyCode.None) {
 							GetComponent<Renderer>().material.color = original;
 						}
 					}

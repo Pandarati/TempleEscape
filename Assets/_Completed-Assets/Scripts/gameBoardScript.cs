@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameBoardScript : MonoBehaviour {
 
-	    public Text RulesText;
+	    private Text RulesText;
 
 			protected static List<Machine> machines_1 = new List<Machine>();
 			protected static List<Machine> machines_2 = new List<Machine>();
@@ -38,8 +39,22 @@ public class gameBoardScript : MonoBehaviour {
 //
 // 	}
 
+// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+// static public void CallbackInitialization()
+// {
+// 		//register the callback to be called everytime the scene is loaded
+// 		SceneManager.sceneLoaded += OnSceneLoaded;
+// }
+//
+// //This is called each time a scene is loaded.
+// static private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+// {
+// 		// instance.level++;
+// 		this.initialize();
+// }
+
 	// Use this for initialization
-	void Start () {
+	public void initialize () {
 		loadDFAPieces();
 
 		System.Random rnd = new System.Random();
@@ -54,8 +69,8 @@ public class gameBoardScript : MonoBehaviour {
 			mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
 		} else if (GameManager.public_level == 3){
 			int m1_selection = 4;
-		  int m2_selection = 3;
-			mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
+		  int m2_selection = 5;
+			mainDFA = buildLevelDFA(machines_1[m1_selection], machines_1[m2_selection]);
 		} else {
 			mainDFA = buildLevelDFADifficult();
 		}
