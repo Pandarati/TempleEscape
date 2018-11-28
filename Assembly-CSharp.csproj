@@ -62,6 +62,7 @@
      <Compile Include="Assets\_Completed-Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\LineSystem.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\_Completed-Assets\Scripts\mov.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\_Completed-Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\_Complete-Game\Scripts\BoardManager.cs" />

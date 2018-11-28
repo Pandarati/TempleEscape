@@ -43,25 +43,44 @@ public class gameBoardScript : MonoBehaviour {
 		loadDFAPieces();
 
 		System.Random rnd = new System.Random();
-		int m1_selection = rnd.Next(6);
-	  int m2_selection = rnd.Next(6);
 
-	  Console.WriteLine (machines_1.Count);
-	  Console.WriteLine (machines_2.Count);
-		Console.WriteLine (m1_selection);
-		Console.WriteLine (m2_selection);
+		if (GameManager.public_level == 1) {
+			int m1_selection = 0;
+		  int m2_selection = 0;
+			mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
+		} else if (GameManager.public_level == 2) {
+			int m1_selection = 2;
+		  int m2_selection = 4;
+			mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
+		} else if (GameManager.public_level == 3){
+			int m1_selection = 4;
+		  int m2_selection = 3;
+			mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
+		} else {
+			mainDFA = buildLevelDFADifficult();
+		}
 
-		mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
-		mainDFA = buildLevelDFADifficult();
+	  // Console.WriteLine (machines_1.Count);
+	  // Console.WriteLine (machines_2.Count);
+		// Console.WriteLine (m1_selection);
+		// Console.WriteLine (m2_selection);
+		//
+		// mainDFA = buildLevelDFA(machines_1[m1_selection], machines_2[m2_selection]);
+		// mainDFA = buildLevelDFADifficult();
+		// RulesText.text = mainDFA.description;
+		// Console.WriteLine(mainDFA.description);
+
+		RulesText = GameObject.Find("RulesText").GetComponent<Text>();
+
+		//Set the text of levelText to the string "Day" and append the current level number.
 		RulesText.text = mainDFA.description;
-		Console.WriteLine(mainDFA.description);
 	}
 
 	// Update is called once per frame
 	protected static void Update () {
-		string input = "*###*#";
-		int index = 0;
-		Console.WriteLine(mainDFA.executeSteps(mainDFA, mainDFA.start.name, input, index));
+		// string input = "*###*#";
+		// int index = 0;
+		// Console.WriteLine(mainDFA.executeSteps(mainDFA, mainDFA.start.name, input, index));
 	}
 
 	protected static void loadDFAPieces() {
@@ -196,7 +215,7 @@ public class gameBoardScript : MonoBehaviour {
 		arrows.Add("*", star_transition);
 		q2 = new State("q2", false, arrows);
 		states = new Dictionary<string, State>() {{"q0", q0}, {"q1", q1}, {"q2", q2}};
-		Machine m6 = new Machine(q0, alphabet, states, "- you cannot step on a # tile after a * tile");
+		Machine m6 = new Machine(q0, alphabet, states, "- you cannot step on a # tile directly after a * tile");
 		machines_2.Add(m6);
 
 		//atleast 8 steps
@@ -529,26 +548,36 @@ public class gameBoardScript : MonoBehaviour {
 			List<Machine> dfas_3 = new List<Machine>();
 			System.Random rnd = new System.Random();
 
-			for (int i = 0; i < machines_1.Count; i++) {
-				if (i == 5) {
-					dfas_1.Add (machines_1[i]);
-				} else {
-					dfas_2.Add (machines_1[i]);
-				}
-			}
-			for (int i = 0; i < machines_2.Count; i++) {
-				if (i == 1 || i == 3) {
-					dfas_1.Add (machines_2[i]);
-				} else {
-					dfas_3.Add (machines_2[i]);
-				}
+			// for (int i = 0; i < machines_1.Count; i++) {
+			// 	if (i == 5) {
+			// 		dfas_1.Add (machines_1[i]);
+			// 	} else {
+			// 		dfas_2.Add (machines_1[i]);
+			// 	}
+			// }
+			// for (int i = 0; i < machines_2.Count; i++) {
+			// 	if (i == 1 || i == 3) {
+			// 		dfas_1.Add (machines_2[i]);
+			// 	} else {
+			// 		dfas_3.Add (machines_2[i]);
+			// 	}
+			// }
+
+			int dfa1_selection = 0;
+			int dfa2_selection = 0;
+			int dfa3_selection = 0;
+
+			if (GameManager.public_level == 4) {
+				dfa1_selection = 5;
+				dfa2_selection = 1;
+				dfa3_selection = 0;
+			} else if (GameManager.public_level == 5) {
+				dfa1_selection = 4;
+				dfa2_selection = 0;
+				dfa3_selection = 5;
 			}
 
-			int dfa1_selection = rnd.Next(3);
-			int dfa2_selection = rnd.Next(5);
-			int dfa3_selection = rnd.Next(4);
-
-			Machine temp = buildLevelDFA (dfas_1 [dfa1_selection], dfas_2 [dfa2_selection]);
-			return buildLevelDFA (temp, dfas_3 [dfa3_selection]);
+			Machine temp = buildLevelDFA (machines_1 [dfa1_selection], machines_1 [dfa2_selection]);
+			return buildLevelDFA (temp, machines_2[dfa3_selection]);
 		}
 }

@@ -25,6 +25,7 @@ public class BoardManager : MonoBehaviour {
 	public GameObject htile;
 	public GameObject borderTile;
 	public GameObject exit;
+	public GameObject player;
 
 	private Transform boardHolder;
 	private List<Vector3> gridPositions = new List<Vector3>();
@@ -74,8 +75,37 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
 		BoardSetup();
 		InitialiseList();
-		//LayoutObjectAtRandom(xtile, 3, 3);
-		//LayoutObjectAtRandom(htile, 3, 3);
+		LayoutObjectAtRandom(xtile, 3, 3);
+		LayoutObjectAtRandom(htile, 3, 3);
 		Instantiate (exit, new Vector3 (cols - 1, rows - 1, 0f), Quaternion.identity);
+		Instantiate (player, new Vector3 (0f,0.2f,0f), Quaternion.identity);
+
 	}
+
+	// public void ResetBoard() {
+	//
+	// 	List<GameObject> xtiles = new List<GameObject>();
+	// 	List<GameObject> htiles = new List<GameObject>();
+	//
+	// 	xtiles.AddRange(GameObject.FindGameObjectsWithTag("xtile"));
+	// 	htiles.AddRange(GameObject.FindGameObjectsWithTag("htile"));
+	// 	// GameObject xtile = GameObject.FindWithTag("xtile");;
+	// 	// GameObject htile = GameObject.FindWithTag("htile");;
+	//
+	// 	int xCount = xtiles.Count;
+	// 	int hCount = htiles.Count;
+	//
+	// 	Destroy(GameObject.Find("xtile"));
+	// 	Destroy(GameObject.Find("htile"));
+	//
+	// 	for (int i = 0; i < xCount; i++) {
+	// 					Instantiate(xtile, xtiles[i].transform.position, xtiles[i].transform.rotation);
+	// 	}
+	//
+	// 	for (int i = 0; i < hCount; i++) {
+	// 					Instantiate(htile, htiles[i].transform.position, htiles[i].transform.rotation);
+	// 	}
+	//
+	// 	GameObject.Find("Player").transform.position = new Vector3(0f, 0.2f, 0f);
+	// }
 }
