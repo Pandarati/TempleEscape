@@ -6,13 +6,11 @@ using UnityEngine.SceneManagement;
 public class ColliderScript : MonoBehaviour {
 
 	public Color original;
-	public static bool restart;
 	private BoardManager mngr;
 
 	// Use this for initialization
 	void Start () {
 			original = GetComponent<Renderer>().material.color;
-			restart = false;
 	}
 
 	// Update is called once per frame
@@ -39,6 +37,7 @@ public class ColliderScript : MonoBehaviour {
 						if (Movement.move == Movement.prev_move){
 							// mngr = GetComponent<BoardManager>();
 							// mngr.ResetBoard();
+							restart.restarting = true;
 							SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 							// restart = true;
 						}

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	public static List<GameObject> activeTiles;
 	public static GameObject panel;
 	public bool replay;
+	private int score;
 
 	void Awake() {
 		if (instance == null) {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		replay = false;
+		score = 0;
 
 		DontDestroyOnLoad(gameObject);
 		activeTiles = new List<GameObject>();
@@ -48,8 +50,10 @@ public class GameManager : MonoBehaviour {
 				instance.InitGame();
 			}else {
 				instance.level++;
+				instance.score += 100;
 				if (instance.level > 5) {
 					instance.level = 1;
+					instance.score = 0;
 				}
 				instance.InitGame();
 			}
@@ -61,7 +65,7 @@ public class GameManager : MonoBehaviour {
 		//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
 		levelText = GameObject.Find("LevelText").GetComponent<Text>();
 		//Set the text of levelText to the string "Day" and append the current level number.
-		levelText.text = "Level " + level;
+		levelText.text = "Level: " + level + "  Score: " + score;
 
 		activeTiles.Clear();
 
